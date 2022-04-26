@@ -1,0 +1,214 @@
+[cloudera@quickstart ~]$ hive
+
+Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.properties
+WARNING: Hive CLI is deprecated and migration to Beeline is recommended.
+hive> CREATE external TABLE hbase_flight_new(fno int, fsource string,fdest string,fsh_at string,fsh_dt string,fsch_delay 
+    > string,delay int) ;;
+OK
+Time taken: 1.498 seconds
+hive> drop table hbase_flight_new
+    > ;
+OK
+Time taken: 0.204 seconds
+hive> CREATE external TABLE hbase_flight_new(fno int,fsource string,fdest string,fyear int,fsh_at string,fsh_dt string,delay int)
+    > STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+    > WITH SERDEPROPERTIES("hbase.columns.mapping"=":key,finfo:source,finfo:dest,finfo:year,fsch:at,fsch:dt,fsch:delay_in_mins")
+    > TBLPROPERTIES("hbase.table.name"="flight");
+OK
+Time taken: 2.649 seconds
+hive> SELECT * FROM hbase_flight_new
+    > ;
+OK
+1	Guwahati	Delhi	2008	08:00PM	05:00PM	18
+2	Bangalore	Delhi	2008	09:00PM	11:30PM	55
+3	Pune	Mumbai	2010	08:00AM	11:30PM	53
+4	Pune	Chennai	2008	05:00PM	04:00PM	20
+Time taken: 1.161 seconds, Fetched: 4 row(s)
+hive> select avg(delay) from hbase_flight_new where fyear=2008;)
+    > ;
+Query ID = cloudera_20220418001010_2fdc27cd-d28f-47a2-b9dc-5d5ca5f0143f
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1650262690593_0001, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1650262690593_0001/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1650262690593_0001
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-04-18 00:11:08,788 Stage-1 map = 0%,  reduce = 0%
+2022-04-18 00:11:27,715 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.86 sec
+2022-04-18 00:11:43,260 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.43 sec
+MapReduce Total cumulative CPU time: 4 seconds 430 msec
+Ended Job = job_1650262690593_0001
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.43 sec   HDFS Read: 8838 HDFS Write: 5 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 430 msec
+OK
+31.0
+Time taken: 62.062 seconds, Fetched: 1 row(s)
+NoViableAltException(296@[])
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1020)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:199)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:166)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:393)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:307)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1110)
+	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1158)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1047)
+	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1037)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:207)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:159)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:370)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:756)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:675)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:615)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:221)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:136)
+FAILED: ParseException line 1:0 cannot recognize input near ')' '<EOF>' '<EOF>'
+hive> 
+    > ;
+hive> select avg(delay) from hbase_flight_new where fyear=2008;
+Query ID = cloudera_20220418001212_67412edf-0a84-458c-b78a-84e4165366d0
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1650262690593_0002, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1650262690593_0002/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1650262690593_0002
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2022-04-18 00:12:23,559 Stage-1 map = 0%,  reduce = 0%
+2022-04-18 00:12:40,282 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.73 sec
+2022-04-18 00:12:53,294 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.2 sec
+MapReduce Total cumulative CPU time: 4 seconds 200 msec
+Ended Job = job_1650262690593_0002
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.2 sec   HDFS Read: 8919 HDFS Write: 5 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 200 msec
+OK
+31.0
+Time taken: 47.018 seconds, Fetched: 1 row(s)
+hive> select * from hbase_flight_new where fyear=2008;
+OK
+1	Guwahati	Delhi	2008	08:00PM	05:00PM	18
+2	Bangalore	Delhi	2008	09:00PM	11:30PM	55
+4	Pune	Chennai	2008	05:00PM	04:00PM	20
+Time taken: 0.227 seconds, Fetched: 3 row(s)
+hive> CREATE INDEX hbase_flight_index
+    > ON TABLE hbase_flight_new (delay)
+    > AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler'
+    > WITH DEFERRED REBUILD;
+OK
+Time taken: 0.545 seconds
+hive> SHOW INDEX ON hbase_flight_new;
+OK
+hbase_flight_index  	hbase_flight_new    	delay               	default__hbase_flight_new_hbase_flight_index__	compact             	
+Time taken: 0.148 seconds, Fetched: 1 row(s)
+hive> create table empinfo(empno int,empgrade string) row format delimited fields terminated by ',' stored as textfile;
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. AlreadyExistsException(message:Table empinfo already exists)
+hive> drop table empinfo
+    > ;
+OK
+Time taken: 0.254 seconds
+hive> create table empinfo(empno int,empgrade string) row format delimited fields terminated by ',' stored as textfile;
+OK
+Time taken: 0.082 seconds
+hive> load data local inpath '/home/cloudera/Desktop/empgrade.txt' into table empinfo;
+FAILED: SemanticException Line 1:23 Invalid path ''/home/cloudera/Desktop/empgrade.txt'': No files matching path file:/home/cloudera/Desktop/empgrade.txt
+hive> load data local inpath '~/Desktop/empgrade.txt' into table empinfo;
+FAILED: SemanticException Line 1:23 Invalid path ''~/Desktop/empgrade.txt'': No files matching path file:/home/cloudera/~/Desktop/empgrade.txt
+hive> load data local inpath '/Desktop/empgrade.txt' into table empinfo;
+FAILED: SemanticException Line 1:23 Invalid path ''/Desktop/empgrade.txt'': No files matching path file:/Desktop/empgrade.txt
+hive> load data local inpath 'home/cloudera/Desktop/empgrade.txt' into table empinfo;
+FAILED: SemanticException Line 1:23 Invalid path ''home/cloudera/Desktop/empgrade.txt'': No files matching path file:/home/cloudera/home/cloudera/Desktop/empgrade.txt
+hive> load data local inpath 'home/cloudera/Desktop/empgrades.txt' into table empinfo;
+FAILED: SemanticException Line 1:23 Invalid path ''home/cloudera/Desktop/empgrades.txt'': No files matching path file:/home/cloudera/home/cloudera/Desktop/empgrades.txt
+hive> load data local inpath '/home/cloudera/Desktop/empgrades.txt' into table empinfo;
+Loading data to table default.empinfo
+Table default.empinfo stats: [numFiles=1, totalSize=24]
+OK
+Time taken: 0.635 seconds
+hive> select * from empinfo;
+OK
+1	A
+2	B
+3	C
+4	A
+5	B
+6	C
+Time taken: 0.111 seconds, Fetched: 6 row(s)
+hive> show tables;
+OK
+default__hbase_flight_new_hbase_flight_index__
+empdbnew
+empinfo
+hbase_flight_new
+Time taken: 0.055 seconds, Fetched: 4 row(s)
+hive> create table empdb(eno int, ename string, esal int) row format delimited fields terminated by ',' stored as textfile;
+OK
+Time taken: 0.089 seconds
+hive> load data local inpath 'home/cloudera/Desktop/empdb.txt' into table empdb;
+FAILED: SemanticException Line 1:23 Invalid path ''home/cloudera/Desktop/empdb.txt'': No files matching path file:/home/cloudera/home/cloudera/Desktop/empdb.txt
+hive> load data local inpath '~/Desktop/empdb.txt' into table empdb;
+FAILED: SemanticException Line 1:23 Invalid path ''~/Desktop/empdb.txt'': No files matching path file:/home/cloudera/~/Desktop/empdb.txt
+hive> load data local inpath '/Desktop/empdb.txt' into table empdb;
+FAILED: SemanticException Line 1:23 Invalid path ''/Desktop/empdb.txt'': No files matching path file:/Desktop/empdb.txt
+hive> load data local inpath '/home/cloudera/Desktop/empdb.txt' into table empdb
+    > ;
+Loading data to table default.empdb
+Table default.empdb stats: [numFiles=1, totalSize=90]
+OK
+Time taken: 0.519 seconds
+hive> select * from empdb
+    > ;
+OK
+1	deepali	120000
+2	mahesh	30000
+3	mangesh	25000
+4	ram	39000
+5	brijesh	40000
+6	john	300000
+Time taken: 0.07 seconds, Fetched: 6 row(s)
+hive> SELECT eno, ename, empno, empgrade FROM empdbnew JOIN empinfo ON eno = empno;
+Query ID = cloudera_20220418003636_f903716e-c457-415a-9627-1598e53684a4
+Total jobs = 1
+Execution log at: /tmp/cloudera/cloudera_20220418003636_f903716e-c457-415a-9627-1598e53684a4.log
+2022-04-18 12:37:01	Starting to launch local task to process map join;	maximum memory = 1013645312
+2022-04-18 12:37:03	Dump the side-table for tag: 1 with group count: 6 into file: file:/tmp/cloudera/cb63283e-d448-4c48-9cfe-2e84444932ed/hive_2022-04-18_00-36-52_339_3889243584216725453-1/-local-10003/HashTable-Stage-3/MapJoin-mapfile01--.hashtable
+2022-04-18 12:37:03	Uploaded 1 File to: file:/tmp/cloudera/cb63283e-d448-4c48-9cfe-2e84444932ed/hive_2022-04-18_00-36-52_339_3889243584216725453-1/-local-10003/HashTable-Stage-3/MapJoin-mapfile01--.hashtable (386 bytes)
+2022-04-18 12:37:03	End of local task; Time Taken: 2.738 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 1
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1650262690593_0003, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1650262690593_0003/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1650262690593_0003
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 0
+2022-04-18 00:37:20,670 Stage-3 map = 0%,  reduce = 0%
+2022-04-18 00:37:35,155 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 2.07 sec
+MapReduce Total cumulative CPU time: 2 seconds 70 msec
+Ended Job = job_1650262690593_0003
+MapReduce Jobs Launched: 
+Stage-Stage-3: Map: 1   Cumulative CPU: 2.07 sec   HDFS Read: 6096 HDFS Write: 76 SUCCESS
+Total MapReduce CPU Time Spent: 2 seconds 70 msec
+OK
+1	deepali	1	A
+2	mahesh	2	B
+3	mangesh	3	C
+4	ram	4	A
+5	brijesh	5	B
+6	john	6	C
+Time taken: 45.062 seconds, Fetched: 6 row(s)
+hive> 

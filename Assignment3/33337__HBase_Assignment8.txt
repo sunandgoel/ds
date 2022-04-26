@@ -1,0 +1,460 @@
+[cloudera@quickstart ~]$ hbase shell
+2022-04-17 21:14:58,929 INFO  [main] Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available
+HBase Shell; enter 'help<RETURN>' for list of supported commands.
+Type "exit<RETURN>" to leave the HBase Shell
+Version 1.0.0-cdh5.4.2, rUnknown, Tue May 19 17:07:29 PDT 2015
+
+hbase(main):001:0> create 'flight','finfo','fsch'
+0 row(s) in 0.8180 seconds
+
+=> Hbase::Table - flight
+hbase(main):002:0> list
+TABLE                                                                                                                                                                                                                                        
+flight                                                                                                                                                                                                                                       
+1 row(s) in 0.0160 seconds
+
+=> ["flight"]
+hbase(main):003:0> put 'flight',1,'finfo:source','Pune'
+0 row(s) in 0.1710 seconds
+
+hbase(main):004:0> put 'flight',1,'finfo:dest','Mumbai'
+0 row(s) in 0.0050 seconds
+
+hbase(main):005:0> put 'flight',1,'finfo:year',2009
+0 row(s) in 0.0070 seconds
+
+hbase(main):006:0> put 'flight',1,'fsch:at','10:30AM'
+0 row(s) in 0.0080 seconds
+
+hbase(main):007:0> put 'flight',1,'fsch:dt','09:30AM'
+0 row(s) in 0.0050 seconds
+
+hbase(main):008:0> put 'flight',1,'fsch:delay_in_mins','6'
+0 row(s) in 0.0050 seconds
+
+hbase(main):009:0> put 'flight',1,'finfo:source','Bangalore'
+0 row(s) in 0.0040 seconds
+
+hbase(main):010:0> put 'flight',1,'finfo:dest','Mumbai'
+0 row(s) in 0.0070 seconds
+
+hbase(main):011:0> put 'flight',1,'finfo:year',2008
+0 row(s) in 0.0070 seconds
+
+hbase(main):012:0> put 'flight',1,'fsch:at','10:30PM'
+0 row(s) in 0.0050 seconds
+
+hbase(main):013:0> put 'flight',1,'fsch:dt','06:30PM'
+0 row(s) in 0.0050 seconds
+
+hbase(main):014:0> put 'flight',1,'fsch:delay_in_mins','60'
+0 row(s) in 0.0040 seconds
+
+hbase(main):015:0> put 'flight',1,'finfo:source','Kolkata'
+0 row(s) in 0.0060 seconds
+
+hbase(main):016:0> put 'flight',1,'finfo:dest','Pune'
+0 row(s) in 0.0050 seconds
+
+hbase(main):017:0> put 'flight',1,'finfo:year',2008
+0 row(s) in 0.0080 seconds
+
+hbase(main):018:0> put 'flight',1,'fsch:at','06:00PM'
+0 row(s) in 0.0290 seconds
+
+hbase(main):019:0> put 'flight',1,'fsch:dt','07:00PM'
+0 row(s) in 0.0110 seconds
+
+hbase(main):020:0> put 'flight',1,'fsch:delay_in_mins','18'
+0 row(s) in 0.0090 seconds
+
+hbase(main):021:0> put 'flight',1,'finfo:source','Guwahati'
+0 row(s) in 0.0050 seconds
+
+hbase(main):022:0> put 'flight',1,'finfo:dest','Delhi'
+0 row(s) in 0.0050 seconds
+
+hbase(main):023:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255801838, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255815579, value=06:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255825967, value=07:00PM                                                                                                                          
+1 row(s) in 0.0340 seconds
+
+hbase(main):024:0> put 'flight',2,'finfo:source','Bangalore'
+0 row(s) in 0.0040 seconds
+
+hbase(main):025:0> put 'flight',2,'finfo:dest','Delhi'
+0 row(s) in 0.0050 seconds
+
+hbase(main):026:0> put 'flight',1,'finfo:year',2008
+0 row(s) in 0.0080 seconds
+
+hbase(main):027:0> put 'flight',1,'fsch:at','08:00PM'
+0 row(s) in 0.0120 seconds
+
+hbase(main):028:0> put 'flight',1,'fsch:dt','05:00PM'
+0 row(s) in 0.0050 seconds
+
+hbase(main):029:0> put 'flight',2,'finfo:year',2008
+0 row(s) in 0.0040 seconds
+
+hbase(main):030:0> put 'flight',2,'fsch:at','09:00PM'
+0 row(s) in 0.0060 seconds
+
+hbase(main):031:0> put 'flight',2,'fsch:dt','11:30PM'
+0 row(s) in 0.0050 seconds
+
+hbase(main):032:0> put 'flight',2,'fsch:delay_in_mins','55'
+0 row(s) in 0.0080 seconds
+
+hbase(main):033:0> put 'flight',3,'finfo:source','Kolkata'
+0 row(s) in 0.0040 seconds
+
+hbase(main):034:0> put 'flight',3,'finfo:dest','Dibrugarh'
+0 row(s) in 0.0100 seconds
+
+hbase(main):035:0> put 'flight',3,'finfo:year','2010'
+0 row(s) in 0.0060 seconds
+
+hbase(main):036:0> put 'flight',3,'fsch:dt','11:30PM'
+0 row(s) in 0.0080 seconds
+
+hbase(main):037:0> put 'flight',3,'fsch:at','08:00AM'
+0 row(s) in 0.0060 seconds
+
+hbase(main):038:0> put 'flight',3,'fsch:delay_in_mins','08:00AM'
+0 row(s) in 0.0060 seconds
+
+hbase(main):039:0> scan 'flight
+hbase(main):040:0' '
+
+ERROR: Illegal character code:10, <
+> at 6. User-space table qualifiers can only contain 'alphanumeric characters': i.e. [a-zA-Z_0-9-.]: flight
+
+Here is some help for this command:
+Scan a table; pass table name and optionally a dictionary of scanner
+specifications.  Scanner specifications may include one or more of:
+TIMERANGE, FILTER, LIMIT, STARTROW, STOPROW, TIMESTAMP, MAXLENGTH,
+or COLUMNS, CACHE or RAW, VERSIONS
+
+If no columns are specified, all columns will be scanned.
+To scan all members of a column family, leave the qualifier empty as in
+'col_family:'.
+
+The filter can be specified in two ways:
+1. Using a filterString - more information on this is available in the
+Filter Language document attached to the HBASE-4176 JIRA
+2. Using the entire package name of the filter.
+
+Some examples:
+
+  hbase> scan 'hbase:meta'
+  hbase> scan 'hbase:meta', {COLUMNS => 'info:regioninfo'}
+  hbase> scan 'ns1:t1', {COLUMNS => ['c1', 'c2'], LIMIT => 10, STARTROW => 'xyz'}
+  hbase> scan 't1', {COLUMNS => ['c1', 'c2'], LIMIT => 10, STARTROW => 'xyz'}
+  hbase> scan 't1', {COLUMNS => 'c1', TIMERANGE => [1303668804, 1303668904]}
+  hbase> scan 't1', {REVERSED => true}
+  hbase> scan 't1', {FILTER => "(PrefixFilter ('row2') AND
+    (QualifierFilter (>=, 'binary:xyz'))) AND (TimestampsFilter ( 123, 456))"}
+  hbase> scan 't1', {FILTER =>
+    org.apache.hadoop.hbase.filter.ColumnPaginationFilter.new(1, 0)}
+  hbase> scan 't1', {CONSISTENCY => 'TIMELINE'}
+For setting the Operation Attributes 
+  hbase> scan 't1', { COLUMNS => ['c1', 'c2'], ATTRIBUTES => {'mykey' => 'myvalue'}}
+  hbase> scan 't1', { COLUMNS => ['c1', 'c2'], AUTHORIZATIONS => ['PRIVATE','SECRET']}
+For experts, there is an additional option -- CACHE_BLOCKS -- which
+switches block caching for the scanner on (true) or off (false).  By
+default it is enabled.  Examples:
+
+  hbase> scan 't1', {COLUMNS => ['c1', 'c2'], CACHE_BLOCKS => false}
+
+Also for experts, there is an advanced option -- RAW -- which instructs the
+scanner to return all cells (including delete markers and uncollected deleted
+cells). This option cannot be combined with requesting specific COLUMNS.
+Disabled by default.  Example:
+
+  hbase> scan 't1', {RAW => true, VERSIONS => 10}
+
+Besides the default 'toStringBinary' format, 'scan' supports custom formatting
+by column.  A user can define a FORMATTER by adding it to the column name in
+the scan specification.  The FORMATTER can be stipulated: 
+
+ 1. either as a org.apache.hadoop.hbase.util.Bytes method name (e.g, toInt, toString)
+ 2. or as a custom class followed by method name: e.g. 'c(MyFormatterClass).format'.
+
+Example formatting cf:qualifier1 and cf:qualifier2 both as Integers: 
+  hbase> scan 't1', {COLUMNS => ['cf:qualifier1:toInt',
+    'cf:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt'] } 
+
+Note that you can specify a FORMATTER by column only (cf:qualifier).  You cannot
+specify a FORMATTER for all columns of a column family.
+
+Scan can also be used directly from a table, by first getting a reference to a
+table, like such:
+
+  hbase> t = get_table 't'
+  hbase> t.scan
+
+Note in the above situation, you can still provide all the filtering, columns,
+options, etc as described above.
+
+
+
+hbase(main):041:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255955413, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255965052, value=08:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255982742, value=05:00PM                                                                                                                          
+ 2                                                           column=finfo:dest, timestamp=1650255947103, value=Delhi                                                                                                                         
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 2                                                           column=finfo:year, timestamp=1650255998986, value=2008                                                                                                                          
+ 2                                                           column=fsch:at, timestamp=1650256019810, value=09:00PM                                                                                                                          
+ 2                                                           column=fsch:delay_in_mins, timestamp=1650256053654, value=55                                                                                                                    
+ 2                                                           column=fsch:dt, timestamp=1650256034311, value=11:30PM                                                                                                                          
+ 3                                                           column=finfo:dest, timestamp=1650256100245, value=Dibrugarh                                                                                                                     
+ 3                                                           column=finfo:source, timestamp=1650256083358, value=Kolkata                                                                                                                     
+ 3                                                           column=finfo:year, timestamp=1650256112040, value=2010                                                                                                                          
+ 3                                                           column=fsch:at, timestamp=1650256142745, value=08:00AM                                                                                                                          
+ 3                                                           column=fsch:delay_in_mins, timestamp=1650256154535, value=08:00AM                                                                                                               
+ 3                                                           column=fsch:dt, timestamp=1650256122634, value=11:30PM                                                                                                                          
+3 row(s) in 0.0660 seconds
+
+hbase(main):042:0> put 'flight',3,'fsch:delay_in_mins','43'
+0 row(s) in 0.0060 seconds
+
+hbase(main):043:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255955413, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255965052, value=08:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255982742, value=05:00PM                                                                                                                          
+ 2                                                           column=finfo:dest, timestamp=1650255947103, value=Delhi                                                                                                                         
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 2                                                           column=finfo:year, timestamp=1650255998986, value=2008                                                                                                                          
+ 2                                                           column=fsch:at, timestamp=1650256019810, value=09:00PM                                                                                                                          
+ 2                                                           column=fsch:delay_in_mins, timestamp=1650256053654, value=55                                                                                                                    
+ 2                                                           column=fsch:dt, timestamp=1650256034311, value=11:30PM                                                                                                                          
+ 3                                                           column=finfo:dest, timestamp=1650256100245, value=Dibrugarh                                                                                                                     
+ 3                                                           column=finfo:source, timestamp=1650256083358, value=Kolkata                                                                                                                     
+ 3                                                           column=finfo:year, timestamp=1650256112040, value=2010                                                                                                                          
+ 3                                                           column=fsch:at, timestamp=1650256142745, value=08:00AM                                                                                                                          
+ 3                                                           column=fsch:delay_in_mins, timestamp=1650256226820, value=43                                                                                                                    
+ 3                                                           column=fsch:dt, timestamp=1650256122634, value=11:30PM                                                                                                                          
+3 row(s) in 0.1040 seconds
+
+hbase(main):044:0> put 'flight',3,'finfo:source','Pune'
+0 row(s) in 0.0040 seconds
+
+hbase(main):045:0> put 'flight',3,'finfo:dest','Mumbai'
+0 row(s) in 0.0060 seconds
+
+hbase(main):046:0> put 'flight',3,'finfo:year',2008
+0 row(s) in 0.0070 seconds
+
+hbase(main):047:0> put 'flight',3,'fsch:at','08:00AM'
+0 row(s) in 0.0060 seconds
+
+hbase(main):048:0> put 'flight',3,'fsch:dt','11:30PM'
+0 row(s) in 0.0120 seconds
+
+hbase(main):049:0> put 'flight',3,'fsch:delay_in_mins','53'
+0 row(s) in 0.0080 seconds
+
+hbase(main):050:0> put 'flight',4,'fsch:delay_in_mins','20'
+0 row(s) in 0.0110 seconds
+
+hbase(main):051:0> put 'flight',4,'fsch:at','05:00PM'
+0 row(s) in 0.0120 seconds
+
+hbase(main):052:0> put 'flight',4,'fsch:dt','04:00PM'
+0 row(s) in 0.0250 seconds
+
+hbase(main):053:0> put 'flight',4,'finfo:year',2008
+0 row(s) in 0.0160 seconds
+
+hbase(main):054:0> put 'flight',4,'finfo:source','Pune'
+0 row(s) in 0.0050 seconds
+
+hbase(main):055:0> put 'flight',4,'finfo:dest','Chennai'
+0 row(s) in 0.0050 seconds
+
+hbase(main):056:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255955413, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255965052, value=08:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255982742, value=05:00PM                                                                                                                          
+ 2                                                           column=finfo:dest, timestamp=1650255947103, value=Delhi                                                                                                                         
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 2                                                           column=finfo:year, timestamp=1650255998986, value=2008                                                                                                                          
+ 2                                                           column=fsch:at, timestamp=1650256019810, value=09:00PM                                                                                                                          
+ 2                                                           column=fsch:delay_in_mins, timestamp=1650256053654, value=55                                                                                                                    
+ 2                                                           column=fsch:dt, timestamp=1650256034311, value=11:30PM                                                                                                                          
+ 3                                                           column=finfo:dest, timestamp=1650256255914, value=Mumbai                                                                                                                        
+ 3                                                           column=finfo:source, timestamp=1650256245845, value=Pune                                                                                                                        
+ 3                                                           column=finfo:year, timestamp=1650256297068, value=2008                                                                                                                          
+ 3                                                           column=fsch:at, timestamp=1650256305028, value=08:00AM                                                                                                                          
+ 3                                                           column=fsch:delay_in_mins, timestamp=1650256362042, value=53                                                                                                                    
+ 3                                                           column=fsch:dt, timestamp=1650256317896, value=11:30PM                                                                                                                          
+ 4                                                           column=finfo:dest, timestamp=1650256476169, value=Chennai                                                                                                                       
+ 4                                                           column=finfo:source, timestamp=1650256457396, value=Pune                                                                                                                        
+ 4                                                           column=finfo:year, timestamp=1650256439696, value=2008                                                                                                                          
+ 4                                                           column=fsch:at, timestamp=1650256417175, value=05:00PM                                                                                                                          
+ 4                                                           column=fsch:delay_in_mins, timestamp=1650256390553, value=20                                                                                                                    
+ 4                                                           column=fsch:dt, timestamp=1650256424894, value=04:00PM                                                                                                                          
+4 row(s) in 0.1980 seconds
+
+hbase(main):057:0> alter 'flight',NAME=>'revenue'
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.3320 seconds
+
+hbase(main):058:0> put 'flight',4,'revenue:rs',45000
+0 row(s) in 0.0460 seconds
+
+hbase(main):059:0> put 'flight',3,'revenue:rs',50000
+0 row(s) in 0.0790 seconds
+
+hbase(main):060:0> put 'flight',2,'revenue:rs',60000
+0 row(s) in 0.0160 seconds
+
+hbase(main):061:0> put 'flight',1,'revenue:rs',70000
+0 row(s) in 0.0190 seconds
+
+hbase(main):062:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255955413, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255965052, value=08:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255982742, value=05:00PM                                                                                                                          
+ 1                                                           column=revenue:rs, timestamp=1650256741890, value=70000                                                                                                                         
+ 2                                                           column=finfo:dest, timestamp=1650255947103, value=Delhi                                                                                                                         
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 2                                                           column=finfo:year, timestamp=1650255998986, value=2008                                                                                                                          
+ 2                                                           column=fsch:at, timestamp=1650256019810, value=09:00PM                                                                                                                          
+ 2                                                           column=fsch:delay_in_mins, timestamp=1650256053654, value=55                                                                                                                    
+ 2                                                           column=fsch:dt, timestamp=1650256034311, value=11:30PM                                                                                                                          
+ 2                                                           column=revenue:rs, timestamp=1650256705403, value=60000                                                                                                                         
+ 3                                                           column=finfo:dest, timestamp=1650256255914, value=Mumbai                                                                                                                        
+ 3                                                           column=finfo:source, timestamp=1650256245845, value=Pune                                                                                                                        
+ 3                                                           column=finfo:year, timestamp=1650256297068, value=2008                                                                                                                          
+ 3                                                           column=fsch:at, timestamp=1650256305028, value=08:00AM                                                                                                                          
+ 3                                                           column=fsch:delay_in_mins, timestamp=1650256362042, value=53                                                                                                                    
+ 3                                                           column=fsch:dt, timestamp=1650256317896, value=11:30PM                                                                                                                          
+ 3                                                           column=revenue:rs, timestamp=1650256698022, value=50000                                                                                                                         
+ 4                                                           column=finfo:dest, timestamp=1650256476169, value=Chennai                                                                                                                       
+ 4                                                           column=finfo:source, timestamp=1650256457396, value=Pune                                                                                                                        
+ 4                                                           column=finfo:year, timestamp=1650256439696, value=2008                                                                                                                          
+ 4                                                           column=fsch:at, timestamp=1650256417175, value=05:00PM                                                                                                                          
+ 4                                                           column=fsch:delay_in_mins, timestamp=1650256390553, value=20                                                                                                                    
+ 4                                                           column=fsch:dt, timestamp=1650256424894, value=04:00PM                                                                                                                          
+ 4                                                           column=revenue:rs, timestamp=1650256689281, value=45000                                                                                                                         
+4 row(s) in 0.1200 seconds
+
+hbase(main):063:0>  alter 'flight',NAME=>'revenue',METHOD=>'delete'
+Updating all regions with the new schema...
+0/1 regions updated.
+1/1 regions updated.
+Done.
+0 row(s) in 2.2840 seconds
+
+hbase(main):064:0> scan 'flight'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:dest, timestamp=1650255863859, value=Delhi                                                                                                                         
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 1                                                           column=finfo:year, timestamp=1650255955413, value=2008                                                                                                                          
+ 1                                                           column=fsch:at, timestamp=1650255965052, value=08:00PM                                                                                                                          
+ 1                                                           column=fsch:delay_in_mins, timestamp=1650255838644, value=18                                                                                                                    
+ 1                                                           column=fsch:dt, timestamp=1650255982742, value=05:00PM                                                                                                                          
+ 2                                                           column=finfo:dest, timestamp=1650255947103, value=Delhi                                                                                                                         
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 2                                                           column=finfo:year, timestamp=1650255998986, value=2008                                                                                                                          
+ 2                                                           column=fsch:at, timestamp=1650256019810, value=09:00PM                                                                                                                          
+ 2                                                           column=fsch:delay_in_mins, timestamp=1650256053654, value=55                                                                                                                    
+ 2                                                           column=fsch:dt, timestamp=1650256034311, value=11:30PM                                                                                                                          
+ 3                                                           column=finfo:dest, timestamp=1650256255914, value=Mumbai                                                                                                                        
+ 3                                                           column=finfo:source, timestamp=1650256245845, value=Pune                                                                                                                        
+ 3                                                           column=finfo:year, timestamp=1650256297068, value=2008                                                                                                                          
+ 3                                                           column=fsch:at, timestamp=1650256305028, value=08:00AM                                                                                                                          
+ 3                                                           column=fsch:delay_in_mins, timestamp=1650256362042, value=53                                                                                                                    
+ 3                                                           column=fsch:dt, timestamp=1650256317896, value=11:30PM                                                                                                                          
+ 4                                                           column=finfo:dest, timestamp=1650256476169, value=Chennai                                                                                                                       
+ 4                                                           column=finfo:source, timestamp=1650256457396, value=Pune                                                                                                                        
+ 4                                                           column=finfo:year, timestamp=1650256439696, value=2008                                                                                                                          
+ 4                                                           column=fsch:at, timestamp=1650256417175, value=05:00PM                                                                                                                          
+ 4                                                           column=fsch:delay_in_mins, timestamp=1650256390553, value=20                                                                                                                    
+ 4                                                           column=fsch:dt, timestamp=1650256424894, value=04:00PM                                                                                                                          
+4 row(s) in 0.1530 seconds
+
+hbase(main):065:0> create 'temp_table','column_family'
+0 row(s) in 0.4580 seconds
+
+=> Hbase::Table - temp_table
+hbase(main):066:0> list
+TABLE                                                                                                                                                                                                                                        
+flight                                                                                                                                                                                                                                       
+temp_table                                                                                                                                                                                                                                   
+2 row(s) in 0.0250 seconds
+
+=> ["flight", "temp_table"]
+hbase(main):067:0> disable 'temp_table'
+0 row(s) in 1.2790 seconds
+
+hbase(main):068:0> drop 'temp_table'
+0 row(s) in 0.2300 seconds
+
+hbase(main):069:0> list
+TABLE                                                                                                                                                                                                                                        
+flight                                                                                                                                                                                                                                       
+1 row(s) in 0.0040 seconds
+
+=> ["flight"]
+hbase(main):070:0> get 'flight',1
+COLUMN                                                       CELL                                                                                                                                                                            
+ finfo:dest                                                  timestamp=1650255863859, value=Delhi                                                                                                                                            
+ finfo:source                                                timestamp=1650255856448, value=Guwahati                                                                                                                                         
+ finfo:year                                                  timestamp=1650255955413, value=2008                                                                                                                                             
+ fsch:at                                                     timestamp=1650255965052, value=08:00PM                                                                                                                                          
+ fsch:delay_in_mins                                          timestamp=1650255838644, value=18                                                                                                                                               
+ fsch:dt                                                     timestamp=1650255982742, value=05:00PM                                                                                                                                          
+6 row(s) in 0.0540 seconds
+
+hbase(main):071:0> get 'flight',1 get 'flight','1',COLUMN=>'finfo:source'
+SyntaxError: (hbase):71: syntax error, unexpected tIDENTIFIER
+
+get 'flight',1 get 'flight','1',COLUMN=>'finfo:source'
+                 ^
+
+hbase(main):072:0> get 'flight','1',COLUMN=>'finfo:source'
+COLUMN                                                       CELL                                                                                                                                                                            
+ finfo:source                                                timestamp=1650255856448, value=Guwahati                                                                                                                                         
+1 row(s) in 0.0130 seconds
+
+hbase(main):073:0> get 'flight','1',COLUMN=>['finfo:source','finfo:dest']
+COLUMN                                                       CELL                                                                                                                                                                            
+ finfo:dest                                                  timestamp=1650255863859, value=Delhi                                                                                                                                            
+ finfo:source                                                timestamp=1650255856448, value=Guwahati                                                                                                                                         
+2 row(s) in 0.0300 seconds
+
+hbase(main):074:0>  scan 'flight',COLUMNS=>'finfo:source'
+ROW                                                          COLUMN+CELL                                                                                                                                                                     
+ 1                                                           column=finfo:source, timestamp=1650255856448, value=Guwahati                                                                                                                    
+ 2                                                           column=finfo:source, timestamp=1650255909465, value=Bangalore                                                                                                                   
+ 3                                                           column=finfo:source, timestamp=1650256245845, value=Pune                                                                                                                        
+ 4                                                           column=finfo:source, timestamp=1650256457396, value=Pune                                                                                                                        
+4 row(s) in 0.0470 seconds

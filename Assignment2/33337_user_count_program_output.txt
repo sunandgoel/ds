@@ -1,0 +1,6 @@
+[cloudera@quickstart ~]$ hadoop fs -cat user_frequency_count_output/part-r-00000
+10.128.2.1	4257
+10.129.2.1	1652
+10.130.2.1	4056
+10.131.0.1	4198
+10.131.2.1	1626

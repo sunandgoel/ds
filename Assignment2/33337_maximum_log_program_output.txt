@@ -1,0 +1,2 @@
+[cloudera@quickstart ~]$ hadoop fs -cat maxWeb/part-r-00000
+10.128.2.1	4257
